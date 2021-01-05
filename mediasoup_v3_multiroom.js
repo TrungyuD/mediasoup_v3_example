@@ -35,12 +35,12 @@ const fs = require('fs');
 let serverOptions = {
   hostName: "localhost",
   listenPort: 3000,
-  useHttps: false
+  useHttps: true
 };
 let sslOptions = {};
 if (serverOptions.useHttps) {
-  sslOptions.key = fs.readFileSync(serverOptions.httpsKeyFile).toString();
-  sslOptions.cert = fs.readFileSync(serverOptions.httpsCertFile).toString();
+  sslOptions.key = fs.readFileSync('./key.pem');
+  sslOptions.cert = fs.readFileSync('./cert.pem');
 }
 
 // --- prepare server ---
@@ -86,7 +86,7 @@ function isFileExist(path) {
 
 // --- socket.io server ---
 const io = require('socket.io')(webServer);
-console.log('socket.io server start. port=' + webServer.address().port);
+// console.log('socket.io server start. port=' + webServer.address().port);
 
 io.on('connection', function (socket) {
   console.log('client connected. socket id=' + getId(socket) + '  , total clients=' + getClientCount());

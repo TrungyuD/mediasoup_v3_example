@@ -34,7 +34,7 @@
 const fs = require('fs');
 let serverOptions = {
   hostName: "localhost",
-  listenPort: 3000,
+  listenPort: 8000,
   useHttps: false
 };
 let sslOptions = {};
@@ -86,7 +86,7 @@ function isFileExist(path) {
 
 // --- socket.io server ---
 const io = require('socket.io')(webServer);
-console.log('socket.io server start. port=' + webServer.address().port);
+// console.log('socket.io server start. port=' + webServer.address().port);
 
 io.on('connection', function (socket) {
   console.log('client connected. socket id=' + getId(socket) + '  , total clients=' + getClientCount());
